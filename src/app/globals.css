@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+/* next-themes toggles the `dark` class on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Surfaces */
+  --background: #f5f7f4;
+  --foreground: #0d130f;
+  --card: #ffffff;
+  --card-foreground: #0d130f;
+  --muted: #eaf0ea;
+  --muted-foreground: #5f6b62;
+
+  /* Brand — dollar-bill green */
+  --primary: #0f8a44;
+  --primary-foreground: #ffffff;
+  --accent: #e0b13a;
+  --accent-foreground: #1a1300;
+
+  /* Dark contrast surface (near-black panels) */
+  --surface-dark: #10140f;
+  --surface-dark-foreground: #f2f5f0;
+
+  /* Lines & focus */
+  --border: #e2e8e1;
+  --input: #e2e8e1;
+  --ring: #0f8a44;
+
+  /* Soft tints (green / sage / mint / gold) */
+  --tint-blue: #e6f4ea;
+  --tint-lavender: #edf5e8;
+  --tint-mint: #ddf1e4;
+  --tint-peach: #f6efd7;
+
+  --radius: 1.25rem;
+}
+
+.dark {
+  --background: #0a0d0a;
+  --foreground: #f2f5f0;
+  --card: #12160f;
+  --card-foreground: #f2f5f0;
+  --muted: #191d16;
+  --muted-foreground: #97a094;
+
+  --primary: #34c06d;
+  --primary-foreground: #05130a;
+  --accent: #e0b13a;
+  --accent-foreground: #1a1300;
+
+  --surface-dark: #12160f;
+  --surface-dark-foreground: #f2f5f0;
+
+  --border: #232a20;
+  --input: #232a20;
+  --ring: #34c06d;
+
+  --tint-blue: #0f2416;
+  --tint-lavender: #13251a;
+  --tint-mint: #0e2416;
+  --tint-peach: #241e12;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-foreground: var(--surface-dark-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-lavender: var(--tint-lavender);
+  --color-tint-mint: var(--tint-mint);
+  --color-tint-peach: var(--tint-peach);
+
+  --font-sans: var(--font-sans);
+
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+  --radius-2xl: calc(var(--radius) + 1rem);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes kenburns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(0, -1.5%, 0);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 220% 0;
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 9s ease-out forwards;
+}
+
+.animate-floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* Staggered fade-up for hero copy */
+.hero-fade > * {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+.hero-fade > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero-fade > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.hero-fade > *:nth-child(3) {
+  animation-delay: 0.25s;
+}
+.hero-fade > *:nth-child(4) {
+  animation-delay: 0.35s;
+}
+
+/* Hero concave notch — a bg-colored cutout at the bottom-left that houses the CTA.
+   The ::after fillet carves a smooth concave curve where the notch meets the hero floor. */
+.hero-notch {
+  --r: 1.75rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  background: var(--background);
+  border-top-right-radius: var(--r);
+  padding: 1.1rem 1.4rem 1.3rem;
+}
+.hero-notch::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: calc(var(--r) * -1);
+  width: var(--r);
+  height: var(--r);
+  background: radial-gradient(
+    circle at top right,
+    transparent var(--r),
+    var(--background) calc(var(--r) + 0.5px)
+  );
+}
+@media (min-width: 640px) {
+  .hero-notch {
+    --r: 2.25rem;
+    padding: 1.4rem 2rem 1.6rem;
+  }
+}
+
+/* Reviews marquee — rows of cards drift across the screen (starts after 8s) */
+@keyframes mn-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.mn-marquee {
+  overflow: hidden;
+}
+.mn-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mn-marquee var(--mq-dur, 90s) linear 8s infinite;
+}
+.mn-marquee-track.reverse {
+  animation-direction: reverse;
+}
+.mn-marquee:hover .mn-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Scroll reveal — content is visible by default. ScrollAnimations adds
+   `.reveal-hidden` only to below-the-fold elements, then removes it as they
+   scroll in. If JS never runs, nothing is hidden, so content is never lost. */
+[data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].reveal-hidden {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+[data-reveal="up"].reveal-hidden {
+  transform: translateY(40px);
+}
+[data-reveal="down"].reveal-hidden {
+  transform: translateY(-40px);
+}
+[data-reveal="left"].reveal-hidden {
+  transform: translateX(-56px);
+}
+[data-reveal="right"].reveal-hidden {
+  transform: translateX(56px);
+}
+[data-reveal="zoom"].reveal-hidden {
+  transform: scale(0.9);
+}
+[data-reveal="up-left"].reveal-hidden {
+  transform: translate(-48px, 40px);
+}
+[data-reveal="up-right"].reveal-hidden {
+  transform: translate(48px, 40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns,
+  .animate-floaty,
+  .hero-fade > *,
+  .mn-marquee-track {
+    animation: none !important;
+  }
+  [data-reveal] {
+    transition: none;
+  }
+  [data-reveal].reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}
