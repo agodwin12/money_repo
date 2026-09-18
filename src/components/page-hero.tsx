@@ -19,7 +19,7 @@ export function PageHero({
         <div
           data-reveal="up"
           className={cn(
-            "overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-tint-mint via-tint-blue to-card px-6 py-14 sm:rounded-[2.5rem] sm:px-12 sm:py-20",
+            "overflow-hidden rounded-[2rem] border border-border bg-surface-dark px-6 py-14 sm:rounded-[2.5rem] sm:px-12 sm:py-20",
             className
           )}
         >
@@ -29,11 +29,11 @@ export function PageHero({
                 {eyebrow}
               </p>
             )}
-            <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl xl:text-6xl">
+            <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight text-surface-dark-foreground sm:text-5xl xl:text-6xl">
               {title}
             </h1>
             {subtitle && (
-              <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
+              <p className="mt-5 max-w-2xl text-base text-surface-dark-foreground/70 sm:text-lg">
                 {subtitle}
               </p>
             )}

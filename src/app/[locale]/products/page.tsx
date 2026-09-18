@@ -146,14 +146,14 @@ export default async function ProductsPage({
           ) : (
             <div
               data-reveal="up"
-              className="grid overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-tint-mint via-tint-blue to-card sm:rounded-[2.5rem] lg:grid-cols-2"
+              className="grid overflow-hidden rounded-[2rem] border border-border bg-surface-dark sm:rounded-[2.5rem] lg:grid-cols-2"
             >
               <div className="flex flex-col justify-center px-6 py-12 sm:px-12 sm:py-16">
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary">{t("title")}</p>
-                <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+                <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight text-surface-dark-foreground sm:text-5xl">
                   {t("heroTitle")}
                 </h1>
-                <p className="mt-4 max-w-md text-base text-muted-foreground">{t("heroSubtitle")}</p>
+                <p className="mt-4 max-w-md text-base text-surface-dark-foreground/70">{t("heroSubtitle")}</p>
               </div>
               <div className="relative hidden items-center justify-center p-8 lg:flex">
                 <div className="grid w-full max-w-md grid-cols-2 gap-4">

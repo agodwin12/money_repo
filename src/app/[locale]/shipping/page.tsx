@@ -71,16 +71,16 @@ export default async function ShippingPage({
       <main className="w-full pb-24">
         {/* Hero */}
         <Container className="pt-8">
-          <div className="relative grid items-center gap-8 overflow-hidden rounded-[2.5rem] border border-border bg-gradient-to-br from-tint-mint via-tint-blue to-card px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-2">
+          <div className="relative grid items-center gap-8 overflow-hidden rounded-[2.5rem] border border-border bg-surface-dark px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-2">
             <div data-reveal="left">
               <span className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
                 {t("eyebrow")}
               </span>
-              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
+              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-surface-dark-foreground sm:text-5xl">
                 {t("title")}
               </h1>
-              <p className="mt-4 max-w-md text-base text-muted-foreground">{t("subtitle")}</p>
-              <p className="mt-4 text-xs font-medium text-muted-foreground">{t("effective")}</p>
+              <p className="mt-4 max-w-md text-base text-surface-dark-foreground/70">{t("subtitle")}</p>
+              <p className="mt-4 text-xs font-medium text-surface-dark-foreground/50">{t("effective")}</p>
             </div>
             <div data-reveal="right" className="flex justify-center lg:justify-end">
               <ShippingArt kind="delivery" className="h-56 w-full max-w-sm sm:h-72" />
@@ -151,12 +151,12 @@ export default async function ShippingPage({
 
         {/* Returns intro split */}
         <Container className="pt-20">
-          <div className="grid items-center gap-8 rounded-[2.5rem] border border-border bg-gradient-to-br from-tint-blue via-tint-lavender to-card px-6 py-12 sm:px-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 rounded-[2.5rem] border border-border bg-surface-dark px-6 py-12 sm:px-12 lg:grid-cols-2">
             <div data-reveal="left">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-surface-dark-foreground sm:text-4xl">
                 {t("returnsHeading")}
               </h2>
-              <p className="mt-3 max-w-md text-base text-muted-foreground">{t("returnsLead")}</p>
+              <p className="mt-3 max-w-md text-base text-surface-dark-foreground/70">{t("returnsLead")}</p>
             </div>
             <div data-reveal="right" className="flex justify-center lg:justify-end">
               <ShippingArt kind="returns" className="h-48 w-full max-w-xs sm:h-60" />
