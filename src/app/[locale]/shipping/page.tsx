@@ -73,7 +73,7 @@ export default async function ShippingPage({
         <Container className="pt-8">
           <div className="relative grid items-center gap-8 overflow-hidden rounded-[2.5rem] border border-border bg-surface-dark px-6 py-12 sm:px-12 sm:py-16 lg:grid-cols-2">
             <div data-reveal="left">
-              <span className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary backdrop-blur">
                 {t("eyebrow")}
               </span>
               <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-surface-dark-foreground sm:text-5xl">

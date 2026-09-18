@@ -108,37 +108,25 @@ export default async function ProductsPage({
           {activeCat ? (
             <div
               data-reveal="up"
-              className="relative overflow-hidden rounded-[2rem] border border-border sm:rounded-[2.5rem]"
+              className="relative overflow-hidden rounded-[2rem] border border-border bg-surface-dark sm:rounded-[2.5rem]"
             >
-              {activeCat.image ? (
+              {activeCat.image && (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={activeCat.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
                 </>
-              ) : (
-                <div className={cn("absolute inset-0", TINT_BG[activeCat.tint] ?? "bg-muted")} />
               )}
-              <div
-                className={cn(
-                  "relative flex min-h-[15rem] flex-col justify-center px-6 py-12 sm:px-12",
-                  activeCat.image ? "text-white" : "text-foreground"
-                )}
-              >
+              <div className="relative flex min-h-[15rem] flex-col justify-center px-6 py-12 text-surface-dark-foreground sm:px-12">
                 <Link
                   href="/products"
-                  className={cn(
-                    "mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur",
-                    activeCat.image
-                      ? "border-white/25 bg-white/10 text-white"
-                      : "border-border bg-card text-foreground"
-                  )}
+                  className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-surface-dark-foreground backdrop-blur transition-colors hover:bg-white/20"
                 >
                   <X className="h-3.5 w-3.5" />
                   {t("all")}
                 </Link>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{activeCat.name}</h1>
-                <p className={cn("mt-2 text-sm", activeCat.image ? "text-white/80" : "text-muted-foreground")}>
+                <p className="mt-2 text-sm text-surface-dark-foreground/75">
                   {t("shopCategory", { count: counts[activeCat.id] ?? 0 })}
                 </p>
               </div>
@@ -162,14 +150,13 @@ export default async function ProductsPage({
                       key={p.id}
                       href={`/products/${p.slug}`}
                       className={cn(
-                        "group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-transform hover:-translate-y-1",
+                        "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur transition-all hover:-translate-y-1 hover:border-white/25",
                         i === 0 && "col-span-2"
                       )}
                     >
                       <div
                         className={cn(
-                          "relative flex items-center justify-center overflow-hidden",
-                          TINT_BG[p.category.tint] ?? "bg-muted",
+                          "relative flex items-center justify-center overflow-hidden bg-white/5",
                           i === 0 ? "aspect-[2/1]" : "aspect-square"
                         )}
                       >
@@ -179,12 +166,14 @@ export default async function ProductsPage({
                         ) : (
                           <ProductArt
                             kind={p.category.kind as ProductKind}
-                            className={cn("h-20 w-20", ART_COLOR[p.category.tint] ?? "text-primary")}
+                            className="h-20 w-20 text-primary"
                           />
                         )}
                       </div>
                       <div className="flex items-center justify-between gap-2 p-3">
-                        <span className="truncate text-sm font-semibold text-foreground">{p.name}</span>
+                        <span className="truncate text-sm font-semibold text-surface-dark-foreground">
+                          {p.name}
+                        </span>
                         <span className="shrink-0 text-sm font-bold text-primary">
                           {formatMoney(p.price)}
                         </span>
