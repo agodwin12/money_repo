@@ -1,16 +1,19 @@
+import type { ReactNode } from "react";
 import { Container } from "@/components/container";
 import { cn } from "@/lib/utils";
 
-/** Reusable clean hero band for content pages. */
+/** Reusable dark hero band for content pages. */
 export function PageHero({
   eyebrow,
   title,
   subtitle,
+  children,
   className,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  children?: ReactNode;
   className?: string;
 }) {
   return (
@@ -38,6 +41,7 @@ export function PageHero({
               </p>
             )}
           </div>
+          {children}
         </div>
       </Container>
     </section>

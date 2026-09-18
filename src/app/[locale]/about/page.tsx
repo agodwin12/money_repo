@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/container";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PageHero } from "@/components/page-hero";
 import { cn } from "@/lib/utils";
 
 export default async function AboutPage({
@@ -61,19 +62,28 @@ export default async function AboutPage({
   return (
     <>
       <SiteHeader />
-      <main className="w-full pb-24 pt-10">
-        {/* Intro — text + image */}
-        <Container>
+      <main className="w-full pb-24">
+        <PageHero eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")}>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {stats.map((st, i) => (
+              <div
+                key={st.label}
+                data-reveal="up"
+                style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4"
+              >
+                <p className="text-2xl font-bold text-surface-dark-foreground sm:text-3xl">{st.value}</p>
+                <p className="mt-1 text-xs text-surface-dark-foreground/60 sm:text-sm">{st.label}</p>
+              </div>
+            ))}
+          </div>
+        </PageHero>
+
+        {/* Intro — lead + image */}
+        <Container className="pt-14">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div data-reveal="left">
-              <span className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
-                {t("eyebrow")}
-              </span>
-              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
-                {t("title")}
-              </h1>
-              <p className="mt-5 text-lg text-foreground/90">{t("subtitle")}</p>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{t("lead")}</p>
+            <div data-reveal="left" className="border-l-4 border-primary pl-6">
+              <p className="text-xl font-medium leading-snug text-foreground sm:text-2xl">{t("lead")}</p>
             </div>
 
             <div data-reveal="right" className="relative">
@@ -156,23 +166,8 @@ export default async function AboutPage({
           </div>
         </Container>
 
-        {/* Stats */}
-        <Container className="pt-28">
-          <div
-            data-reveal="zoom"
-            className="grid grid-cols-2 gap-6 rounded-[2rem] bg-surface-dark px-6 py-12 text-surface-dark-foreground sm:px-12 lg:grid-cols-4"
-          >
-            {stats.map((st) => (
-              <div key={st.label}>
-                <p className="text-3xl font-bold sm:text-4xl">{st.value}</p>
-                <p className="mt-1 text-sm text-surface-dark-foreground/60">{st.label}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-
         {/* Mission + CTA */}
-        <Container className="pt-16">
+        <Container className="pt-28">
           <div className="max-w-2xl" data-reveal="up">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {t("missionTitle")}

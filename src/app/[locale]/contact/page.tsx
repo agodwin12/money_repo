@@ -1,8 +1,9 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Mail, Phone, MapPin, Check, Plus } from "lucide-react";
+import { Mail, Phone, MapPin, Check, Plus, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PageHero } from "@/components/page-hero";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { PhoneField } from "@/components/phone-field";
 import { sendContact } from "@/lib/contact";
@@ -71,68 +72,60 @@ export default async function ContactPage({
   return (
     <>
       <SiteHeader />
-      <main className="w-full pb-24 pt-12">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Left — heading + contact details */}
-            <div data-reveal="left" className="lg:pt-6">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground">
-                <Mail className="h-3.5 w-3.5 text-primary" />
-                {t("eyebrow")}
-              </span>
-              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
-                {t("title")}
-              </h1>
-              <p className="mt-4 max-w-md text-base text-muted-foreground">{t("subtitle")}</p>
-
-              <div className="mt-9 flex flex-col gap-5">
-                {contacts.map((c) => (
-                  <a
-                    key={c.label}
-                    href={c.href}
-                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group flex items-center gap-4"
+      <main className="w-full pb-24">
+        <PageHero eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")}>
+          {/* Locations */}
+          <div className="mt-10">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-surface-dark-foreground/60">
+              <MapPin className="h-3.5 w-3.5" /> {t("locationLabel")}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2.5">
+              {countries.map((c) => {
+                const F = c.Flag;
+                return (
+                  <span
+                    key={c.name}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-surface-dark-foreground"
                   >
-                    <span
-                      className={cn(
-                        "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-105",
-                        c.accent
-                      )}
-                    >
-                      {c.icon}
+                    <span className="inline-block h-4 w-6 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-white/20">
+                      <F className="block h-full w-full" />
                     </span>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{c.label}</p>
-                      <p className="text-base font-semibold text-foreground group-hover:text-primary">
-                        {c.value}
-                      </p>
-                    </div>
-                  </a>
-                ))}
-              </div>
+                    {c.name}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        </PageHero>
 
-              {/* Locations */}
-              <div className="mt-8">
-                <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                  <MapPin className="h-4 w-4" /> {t("locationLabel")}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2.5">
-                  {countries.map((c) => {
-                    const F = c.Flag;
-                    return (
-                      <span
-                        key={c.name}
-                        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground"
-                      >
-                        <span className="inline-block h-4 w-6 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-black/10">
-                          <F className="block h-full w-full" />
-                        </span>
-                        {c.name}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
+        <Container className="pt-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-14">
+            {/* Left — contact details */}
+            <div data-reveal="left" className="flex flex-col gap-4 lg:sticky lg:top-24 lg:self-start">
+              {contacts.map((c) => (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
+                >
+                  <span
+                    className={cn(
+                      "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-105",
+                      c.accent
+                    )}
+                  >
+                    {c.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm text-muted-foreground">{c.label}</p>
+                    <p className="truncate text-base font-semibold text-foreground group-hover:text-primary">
+                      {c.value}
+                    </p>
+                  </div>
+                  <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                </a>
+              ))}
             </div>
 
             {/* Right — form card */}
