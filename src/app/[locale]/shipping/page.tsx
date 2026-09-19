@@ -24,7 +24,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ShippingArt } from "@/components/shipping-art";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
-import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/contact-info";
+import { TelegramIcon } from "@/components/telegram-icon";
+import { whatsappHref, WHATSAPP_DISPLAY, TELEGRAM_URL, TELEGRAM_DISPLAY } from "@/lib/contact-info";
 
 export default async function ShippingPage({
   params,
@@ -284,6 +285,15 @@ export default async function ShippingPage({
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {WHATSAPP_DISPLAY}
+              </a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#229ED9] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+              >
+                <TelegramIcon className="h-5 w-5" />
+                {TELEGRAM_DISPLAY}
               </a>
               <a
                 href={`mailto:${tc("email")}`}

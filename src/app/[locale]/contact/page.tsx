@@ -5,9 +5,10 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PageHero } from "@/components/page-hero";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
+import { TelegramIcon } from "@/components/telegram-icon";
 import { PhoneField } from "@/components/phone-field";
 import { sendContact } from "@/lib/contact";
-import { PHONE_NUMBER, whatsappHref } from "@/lib/contact-info";
+import { PHONE_NUMBER, whatsappHref, TELEGRAM_URL } from "@/lib/contact-info";
 import { cn } from "@/lib/utils";
 import GB from "country-flag-icons/react/3x2/GB";
 import IT from "country-flag-icons/react/3x2/IT";
@@ -49,6 +50,14 @@ export default async function ContactPage({
       href: whatsappHref(),
       external: true,
       accent: "bg-[#25D366]/15 text-[#128C3E]",
+    },
+    {
+      icon: <TelegramIcon className="h-5 w-5" />,
+      label: t("telegramLabel"),
+      value: t("telegram"),
+      href: TELEGRAM_URL,
+      external: true,
+      accent: "bg-[#229ED9]/15 text-[#1c7fad]",
     },
     {
       icon: <Phone className="h-5 w-5" />,

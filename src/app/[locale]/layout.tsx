@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollAnimations } from "@/components/scroll-animations";
 import { CartProvider } from "@/components/cart/cart-context";
 import { CartDrawer } from "@/components/cart/cart-drawer";
-import { WhatsAppButton } from "@/components/whatsapp-button";
+import { ChatButtons } from "@/components/chat-buttons";
 import "../globals.css";
 
 const geist = Geist({
@@ -55,7 +55,7 @@ export default async function LocaleLayout({
             <CartProvider>
               {children}
               <CartDrawer />
-              <WhatsAppButton />
+              <ChatButtons />
               <ScrollAnimations />
             </CartProvider>
           </NextIntlClientProvider>
